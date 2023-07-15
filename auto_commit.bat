@@ -7,7 +7,7 @@
 
 :: git commit -m "before reupload"
 
-:: Git 저장소에서 pull을 함과 동시에
+:: git 저장소에서 pull을 함과 동시에
 :: 로컬브랜치의 시작지점을 Git저장소의 최신 지점으로 설정
 :: git pull --rebase origin main
 
