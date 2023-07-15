@@ -14,7 +14,7 @@
 
 	cd D:\My Java\algorithm
 
-	Rem git init
+	:: git init
 
 	git add --all
 
