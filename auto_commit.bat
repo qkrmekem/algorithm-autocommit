@@ -19,7 +19,7 @@ git push --set-upstream origin main
 
 	cd D:\My Java\algorithm
 
-	git init
+	::git init
 
 	git add --all
 
