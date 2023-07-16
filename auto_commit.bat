@@ -14,8 +14,6 @@
 
 	cd D:\My Java\algorithm
 
-	:: git init
-
 	git add --all
 
 	git commit -m "auto commit"
