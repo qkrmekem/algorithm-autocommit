@@ -54,13 +54,20 @@ public class Q1043_거짓말 {
 
         for (int i = 1; i <= m; i++) {
             boolean result = true;
+            // 파티에 참가한 사람은 모두 한 집합으로 묶여있으므로
+            // 파티에 참석한 사람중 하나를 선택
             int now = party[i].get(0);
             for (int j = 1; j < knowT.length; j++) {
+                // 진실을 알고 있는 사람의 집합과
+                // 파티에 참석한 사람의 집합이 하나라도 일치하면
                 if (find(now) == find(knowT[j])) {
+                    // 과장을 할 수 없다는 뜻이므로
+                    // result를 false로 수정
                     result = false;
                     break;
                 }
             }
+            // 진실을 아는 사람이 없다면 cnt에 +1을 누적
             if (result) {
                 cnt++;
             }
