@@ -3,36 +3,36 @@ package backJoon;
 import java.io.*;
 import java.util.*;
 
-public class Q2252_줄세우기 {
+public class Q1516_게임개발 {
 
+    static int[] input;
+    static int[] result;
     static ArrayList<Integer>[] arr;
     static int[] edge;
-
-    static ArrayList<Integer> result;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        result = new ArrayList<>();
         int n = Integer.parseInt(st.nextToken());
-        int m = Integer.parseInt(st.nextToken());
-        arr = new ArrayList[n+1];
+        input = new int[n + 1];
+        result = new int[n + 1];
+        arr = new ArrayList[n + 1];
         edge = new int[n + 1];
         for (int i = 1; i <= n; i++) {
             arr[i] = new ArrayList<>();
         }
-
-        // 에지 정보 추가
-        for (int i = 0; i < m; i++) {
+        for (int i = 1; i <= n; i++) {
             st = new StringTokenizer(br.readLine());
-            int s = Integer.parseInt(st.nextToken());
-            int e = Integer.parseInt(st.nextToken());
-            arr[s].add(e);
-            // 진입차수 추가
-            edge[e]++;
+            input[i] = Integer.parseInt(st.nextToken());
+            while (true) {
+                int idx = Integer.parseInt(st.nextToken());
+                if (idx == -1) {
+                    break;
+                }
+                arr[idx].add(i);
+                edge[i]++;
+            }
         }
-
-        // 진입차수가 0인 노드를 큐에 추가
         Queue<Integer> q = new LinkedList<>();
         for (int i = 1; i <= n; i++) {
             if (edge[i] == 0) {
@@ -41,16 +41,19 @@ public class Q2252_줄세우기 {
         }
         while (!q.isEmpty()) {
             int now = q.poll();
-            System.out.print(now + " ");
-            // 큐에서 값을 하나씩 제거하며
             for (int next : arr[now]) {
-                // 노드와 연결된 다음 노드의 진입차수를 1씩 감소
                 edge[next]--;
-                // 진입차수가 0일 경우에만 큐에 추가
+//                result[next] = input[now]+result[now];
+                // 동시에 여러 건물을 지을 수 있으므로 진입 노드 중 가장 오래 걸리는 노드로
+                // 갱신해줌
+                result[next] = Math.max(result[next], result[now] + input[now]);
                 if (edge[next] == 0) {
                     q.add(next);
                 }
             }
+        }
+        for (int i = 1; i <= n; i++) {
+            System.out.println(input[i]+result[i]);
         }
     }
 }
