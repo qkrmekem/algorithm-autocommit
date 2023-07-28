@@ -1,6 +1,6 @@
 package programmers;
 
-public class 가운데글자가져오기 {
+public class Pro_가운데글자가져오기 {
     class Solution {
         public String solution(String s) {
             String answer = "";
