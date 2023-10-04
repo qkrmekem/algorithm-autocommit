@@ -6,12 +6,14 @@ public class Pro_최대공약수와최소공배수 {
         int[] answer = new int[2];
         int min = Math.min(n,m);
         int max = Math.max(n,m);
+        // 최대 공약수 구하기
         for(int i = min; i > 0; i--){
             if(max%i == 0 && min%i == 0){
                 answer[0] = i;
                 break;
             }
         }
+        // 최소 공배수 구하기
         int tmp_min = min;
         int tmp_max = max;
         while(true){
