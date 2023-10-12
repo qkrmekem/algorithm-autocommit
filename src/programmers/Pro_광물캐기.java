@@ -14,6 +14,9 @@ public class Pro_광물캐기 {
         }
 
         Queue<Node> q = new PriorityQueue<>();
+
+
+
         Node now = new Node(0,0,0);
         int sum = 0;
         for(int i = 0; i < last; i++){
