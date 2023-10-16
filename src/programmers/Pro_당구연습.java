@@ -8,7 +8,8 @@ public class Pro_당구연습 {
             int targetX = balls[i][0];
             int targetY = balls[i][1];
 
-            int curlen, len = Integer.MAX_VALUE;
+            int now = 0;
+            int result = Integer.MAX_VALUE;
 
             // 원 쿠션이므로
             // x축의 경우
@@ -22,8 +23,8 @@ public class Pro_당구연습 {
             // x축의 0에서 targetX까지의 거리
             // 이 두가지 거리를 더해서 제곱을 해줘야 함
             if (!(startY == targetY && startX >= targetX)) {
-                curlen = getDistance(startX, startY, targetX * (-1), targetY);
-                len = curlen < len ? curlen : len;
+                now = distance(startX, startY, targetX * (-1), targetY);
+                result = Math.min(now, result);
             }
 
             // 우측으로 이동할 경우
@@ -31,23 +32,23 @@ public class Pro_당구연습 {
             // m에서 targetX까지의 거리
             // 이 두가지 거리를 더해서 제곱을 해줘야 함
             if (!(startY == targetY && startX <= targetX)) {
-                curlen = getDistance(startX, startY, m + (m - targetX), targetY);
-                len = curlen < len ? curlen : len;
+                now = distance(startX, startY, m + (m - targetX), targetY);
+                result = Math.min(now, result);
             }
 
             // 상
             if (!(startX == targetX && startY <= targetY)) {
-                curlen = getDistance(startX, startY, targetX, n + (n - targetY));
-                len = curlen < len ? curlen : len;
+                now = distance(startX, startY, targetX, n + (n - targetY));
+                result = Math.min(now, result);
             }
 
             // 하
             if (!(startX == targetX && startY >= targetY)) {
-                curlen = getDistance(startX, startY, targetX, targetY * (-1));
-                len = curlen < len ? curlen : len;
+                now = distance(startX, startY, targetX, targetY * (-1));
+                result = Math.min(now, result);
             }
 
-            answer[i] = len;
+            answer[i] = result;
         }
 
         return answer;
@@ -57,7 +58,7 @@ public class Pro_당구연습 {
     // Math.sqrt(Math.pow((maxX - minX)) + Math.pow((maxY - minY)))
     // 여기서는 거리에 제곱을 한다 했으므로
     // Math.pow((maxX - minX)) + Math.pow((maxY - minY))
-    public int getDistance(int sx, int sy, int tx, int ty) {
+    public int distance(int sx, int sy, int tx, int ty) {
         return (int) (Math.pow(sx - tx, 2) + Math.pow(sy - ty, 2));
     }
 }
